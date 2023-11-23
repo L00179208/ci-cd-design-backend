@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your GitHub repository
-                git 'https://github.com/yourusername/your-repo.git'
+                Checkout scm
             }
         }
 
