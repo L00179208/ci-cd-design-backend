@@ -128,5 +128,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-#Ignoring the Mac File SO added to Gitignore
+#Ignoring the Mac File
 .DS_Store 
