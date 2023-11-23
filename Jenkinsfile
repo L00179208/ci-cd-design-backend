@@ -1,34 +1,22 @@
-
 pipeline {
     agent any
-    environment {
-        DOCKER_IMAGE = 'ci-cd-pipeline-assignment-backend'
-    }
+
     stages {
         stage('Checkout') {
             steps {
-                // Checks out the source code from Git repository
-                checkout scm
+                // Checkout your GitHub repository
+                git 'https://github.com/yourusername/your-repo.git'
             }
         }
-        stage('Build Docker Image') {
+
+        stage('Build and Deploy') {
             steps {
-                // Building Docker image
-                script {
-                    docker.build(DOCKER_IMAGE)
+                // Change directory to your Node.js application directory
+                dir('/Users/aneeshramakrishnapillai/Documents/MasterOfDevOps/Maria/Assignments/cicd/backend_deploy') {
+                    // Install dependencies and start your Node.js app on a different port
+                    sh 'npm install'
+                    sh 'node app.js --port 8111'  // Change the port as needed
                 }
-            }
-        }
-        stage('Deploy Docker Image') {
-            steps {
-                // Pushing image to Docker registry (optional)
-                // script {
-                //     docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials-id') {
-                //         docker.image(DOCKER_IMAGE).push()
-                //     }
-                // }
-                // Deploying to a Docker container
-                sh 'docker run -d -p 8111:3333 ${DOCKER_IMAGE}'
             }
         }
     }
