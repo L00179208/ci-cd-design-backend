@@ -128,5 +128,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-#Ignoring the Mac File
+#Ignoring the Mac File SSS
 .DS_Store 
