@@ -16,7 +16,7 @@ pipeline {
                     sh 'rsync -avz --delete ./ /Users/aneeshramakrishnapillai/Documents/MasterOfDevOps/Maria/Assignments/cicd/backend_deploy'
                     
                     // Start the Node.js server
-                    sh 'cd /Users/aneeshramakrishnapillai/Documents/MasterOfDevOps/Maria/Assignments/cicd/backend_deploy && npm install && npm start'
+                    sh 'cd /Users/aneeshramakrishnapillai/Documents/MasterOfDevOps/Maria/Assignments/cicd/backend_deploy && npm install && node index.js'
                 }
             }
         }
