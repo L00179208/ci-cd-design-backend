@@ -1,23 +1,33 @@
 pipeline {
     agent any
-
+    environment {
+        DOCKER_IMAGE = 'ci-cd-pipeline-assignment-backend'
+    }
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the code from GitHub
+                // Checks out the source code from Git repository
                 checkout scm
             }
         }
-
-        stage('Deploy and Start Node Server') {
+        stage('Build Docker Image') {
             steps {
+                // Building Docker image
                 script {
-                    // Deploy your application to the local machine
-                    sh 'rsync -avz --delete ./ /Users/aneeshramakrishnapillai/Documents/MasterOfDevOps/Maria/Assignments/cicd/backend_deploy'
-                    
-                    // Start the Node.js server
-                    sh 'cd /Users/aneeshramakrishnapillai/Documents/MasterOfDevOps/Maria/Assignments/cicd/backend_deploy && npm install && node index.js'
+                    docker.build(DOCKER_IMAGE)
                 }
+            }
+        }
+        stage('Deploy Docker Image') {
+            steps {
+                // Pushing image to Docker registry (optional)
+                // script {
+                //     docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials-id') {
+                //         docker.image(DOCKER_IMAGE).push()
+                //     }
+                // }
+                // Deploying to a Docker container
+                sh 'docker run -d -p 8080:8080 ${DOCKER_IMAGE}'
             }
         }
     }
