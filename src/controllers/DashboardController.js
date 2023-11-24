@@ -6,7 +6,7 @@ const dashboard = async (req, res) => {
     data: {
       data,
     },
-    message: "Data loaded successfully",
+    message: "Making an update to the repo.",
   });
 };
 module.exports = { dashboard };
