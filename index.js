@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const userRouter = require("./src/routes/user");
 const generalRouter = require("./src/routes/common");
-const prometheus = require("prom-client");
+//const prometheus = require("prom-client");
 
 dotenv.config();
 app.use(cors());
