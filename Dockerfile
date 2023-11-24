@@ -9,7 +9,6 @@ COPY package*.json ./
 
 # Install application dependencies
 RUN npm install -f
-RUN node ./node_modules/mocha/bin/mocha src/tests
 
 # Copy the rest of the application code to the container
 COPY . .
