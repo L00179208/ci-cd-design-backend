@@ -11,7 +11,7 @@ describe("DashboardTest", function () {
   it("should respond with a 201 status code and the expected JSON response", function (done) {
     // Simulate an HTTP request to your dashboard function
     chai
-      .request("http://localhost:8112/api/V1") // Replace 'your-port' with the actual port of your server
+      .request("http://localhost:3333/api/V1") // Replace 'your-port' with the actual port of your server
       .get("/") // Assuming this is the route that triggers your dashboard function
       .end(function (err, res) {
         // Check for errors
