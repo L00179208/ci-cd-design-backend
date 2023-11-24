@@ -6,7 +6,7 @@ const dashboard = async (req, res) => {
     data: {
       data,
     },
-    message: "Making an update to the repo.",
+    message: "Making an update to the source to push to git repo.",
   });
 };
 module.exports = { dashboard };
