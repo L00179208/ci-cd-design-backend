@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const userRouter = require("./src/routes/user");
 const generalRouter = require("./src/routes/common");
-//const prometheus = require("prom-client");
+const client = require("prom-client");
 
 dotenv.config();
 app.use(cors());
@@ -17,20 +17,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/V1", generalRouter);
 app.use("/api/V1/user", userRouter);
 
-// // Metrics endpoint
-// app.get("/metrics", (req, res) => {
-//   res.set("Content-Type", prometheus.register.contentType);
-//   res.end(prometheus.register.metrics());
-// });
+const register = new client.Registry();
+register.setDefaultLabels({
+  app: "ci-cd-pipeline-app",
+});
 
-// // Define a custom metric
-// const customMetric = new prometheus.Gauge({
-//   name: "my_custom_metric",
-//   help: "A custom metric for my application",
-// });
+client.collectDefaultMetrics({ register });
 
-// // Increment the custom metric
-// customMetric.inc();
+app.get("/metrics", (req, res) => {
+  res.setHeader("Content-Type", register.contentType);
+  register.metrics().then((data) => res.send(data));
+});
 
 const PORT = process.env.PORT || 8111;
 app.listen(PORT, () => {

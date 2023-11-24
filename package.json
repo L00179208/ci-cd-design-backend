@@ -1,5 +1,5 @@
 {
-  "name": "CICDPipelineTask",
+  "name": "CI-CD-Pipeline-Task",
   "version": "1.0.0",
   "description": "Design a basic CI/CD pipeline for a web application of your choice.  This is the backend of the application.",
   "main": "index.js",
@@ -13,10 +13,12 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "prom-client": "^15.0.0",
-    "mocha": "^10.2.0",
+    "prom-client": "^15.0.0"
+  },
+  "devDependencies": {
     "chai": "^4.3.10",
     "chai-http": "^4.4.0",
-    "mocha-junit-reporter": "^2.2.1"    
+    "mocha": "^10.2.0",
+    "mocha-junit-reporter": "^2.2.1"
   }
 }
